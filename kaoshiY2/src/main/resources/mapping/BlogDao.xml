@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jbit.blog.dao.BlogDao">
+    <select id="allBolg" resultType="BlogEntity" parameterType="int">
+        select * from blog limit #{pageIndex},#{pageSize}
+    </select>
+    <!--查询总记录数-->
+    <select id="blogCount" resultType="int">
+        select count(1) from blog
+    </select>
+    <delete id="delBolg" parameterType="int">
+        delete from blog where id=#{id}
+    </delete>
+
+    <insert id="addBlog" parameterType="BlogEntity">
+        insert into blog     values(null,#{content},#{publishtime},#{userid})
+    </insert>
+
+</mapper>

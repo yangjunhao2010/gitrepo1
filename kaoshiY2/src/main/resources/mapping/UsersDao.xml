@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jbit.blog.dao.UsersDao">
+    <select id="selUser" resultType="UsersEntity" parameterType="int">
+        select * from users
+        limit #{pageIndex},#{pageSize}
+    </select>
+    <!--查询总记录数-->
+    <select id="Count" resultType="int">
+        select count(1) from users
+    </select>
+    <delete id="delUser" parameterType="int">
+        delete from users where id=#{id}
+    </delete>
+    <update id="updUser" parameterType="UsersEntity">
+        update users set password=#{password} where id=#{id}
+    </update>
+
+    <insert id="addUser" parameterType="UsersEntity">
+        insert into users values(null,#{username},#{password},#{age},#{sex},#{nickname},#{mobile},#{address},#{supper},#{picpath})
+    </insert>
+
+    <select id="userLogo" parameterType="UsersEntity" resultType="String">
+        select * from users where username=#{userName} and password=#{passWord}
+    </select>
+</mapper>
